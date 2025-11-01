@@ -11,10 +11,9 @@
     </radialGradient>
     <filter id="soft"><feGaussianBlur in="SourceGraphic" stdDeviation="2"></feGaussianBlur></filter>
     <style>
-      .title{font:700 64px/1.1 system-ui,Segoe UI,Roboto,Noto Sans,sans-serif;}
+      .title{font:700 64px/1.1 system-ui,Segoe UI,Roboto,Noto Sans,sans-serif}
       .subtitle{font:500 24px/1.35 system-ui,Segoe UI,Roboto,Noto Sans,sans-serif;opacity:.9}
-      .badge{font:600 18px/1 system-ui,Segoe UI,Roboto,Noto Sans,sans-serif;}
-      .mono{font:600 18px/1.2 ui-monospace,Consolas,Menlo,monospace;}
+      .badge{font:600 18px/1 system-ui,Segoe UI,Roboto,Noto Sans,sans-serif}
       @media (prefers-color-scheme: dark){
         .bg{fill:#0b1020}.fg{fill:url(#g)}.txt{fill:#e5e7eb}.dim{fill:#9ca3af}
         .pill{fill:rgba(255,255,255,.08);stroke:rgba(255,255,255,.18)}
@@ -26,9 +25,11 @@
     </style>
   </defs>
 
+  <!-- background -->
   <rect width="1200" height="360" class="bg"></rect>
   <circle cx="980" cy="70" r="240" fill="url(#glow)"></circle>
 
+  <!-- quantum glyph -->
   <g transform="translate(70,70)" filter="url(#soft)" opacity="0.9">
     <circle cx="0" cy="0" r="22" class="fg"></circle>
     <circle cx="78" cy="56" r="9" class="fg"></circle>
@@ -36,19 +37,19 @@
     <path d="M0,0 C-10,120 90,140 78,56" fill="none" stroke="url(#g)" stroke-width="6" opacity="0.6"></path>
   </g>
 
+  <!-- title & subtitle -->
   <text x="140" y="145" class="title txt">AYJ Quantum Art</text>
   <text x="140" y="190" class="subtitle dim">The world’s first single-qubit generative artwork (2025)</text>
 
+  <!-- badges in one line -->
   <g transform="translate(140,230)">
-    <rect x="0" y="-24" rx="14" ry="14" width="210" height="36" class="pill"></rect>
-    <text x="14" y="0" class="badge txt">Hadamard → Measurement</text>
+    <rect x="0" y="-24" rx="14" ry="14" width="280" height="36" class="pill"></rect>
+    <text x="16" y="0" class="badge txt">Hadamard → Measurement</text>
 
-    <rect x="235" y="-24" rx="14" ry="14" width="170" height="36" class="pill"></rect>
-    <text x="248" y="0" class="badge txt">Single-Qubit Brush</text>
+    <rect x="295" y="-24" rx="14" ry="14" width="210" height="36" class="pill"></rect>
+    <text x="310" y="0" class="badge txt">Single-Qubit Brush</text>
 
-    <rect x="425" y="-24" rx="14" ry="14" width="140" height="36" class="pill"></rect>
-    <text x="438" y="0" class="badge txt">Qiskit · Aer</text>
+    <rect x="520" y="-24" rx="14" ry="14" width="160" height="36" class="pill"></rect>
+    <text x="535" y="0" class="badge txt">Qiskit · Aer</text>
   </g>
-
-  <text x="140" y="300" class="mono dim">- AYJ QUANTUM ART -</text>
 </svg>
