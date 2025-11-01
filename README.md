@@ -1,4 +1,6 @@
-# Quantum Art — Single-Qubit Generated Artwork
+<p align="center">
+  <img src="banners/ayj-quantum-art.svg" width="100%" alt="AYJ Quantum Art — Single-Qubit Generative Artwork">
+</p>
 
 ![quantum art preview](sample_output/quantum_art_1024x1024.bmp)
 
