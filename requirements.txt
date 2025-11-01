@@ -1,0 +1,7 @@
+---
+## requirements.txt
+```txt
+qiskit
+qiskit-aer
+pillow
+numpy
