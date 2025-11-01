@@ -25,7 +25,7 @@ class PaintConfig:
 
 def _bits_to_int(bits: np.ndarray) -> np.ndarray:
     weights = (1 << np.arange(bits.shape[1], dtype=np.uint32))
-    return (bits * weights).sum(axis=1, dtype=np.uint32)
+    return (bits * weights).sum(axis=1, dtype=np.uint32) 
 
 def _apply_palette(rgb_0_255: np.ndarray, palette: str) -> np.ndarray:
     if palette == "direct":
@@ -69,10 +69,13 @@ def _generate_bits_with_one_qubit(total_bits: int, theta: float | None, seed: in
         else:
             qc.ry(theta, 0)
         qc.measure(0,0)
-        job = sim.run(qc, shots=n, memory=True, seed_simulator=seed)
+
+        # 🔧 배치별 시드 변화 (seed + done)
+        batch_seed = None if seed is None else seed + done
+        job = sim.run(qc, shots=n, memory=True, seed_simulator=batch_seed)
         res = job.result()
         mem = res.get_memory()
-        out[done:done+n] = (np.frombuffer("".join(mem).encode(), dtype='S1') == b'1').astype(np.uint8)
+        out[done:done+n] = (np.frombuffer("".join(mem).encode(), dtype="S1") == b"1").astype(np.uint8)
         done += n
     return out
 
@@ -91,6 +94,14 @@ def quantum_paint(cfg: PaintConfig) -> Path:
     total_bits = n_blocks * bits_per_block
 
     meas = _generate_bits_with_one_qubit(total_bits, cfg.theta, cfg.seed)
+
+    # 공간 상관성 제거용 셔플 (비트 순서 무작위화)
+    rng = np.random.default_rng(None if cfg.seed is None else cfg.seed + 9999)
+    perm = np.arange(total_bits)
+    rng.shuffle(perm)
+    meas = meas[perm]
+
+    # 동일
     meas = meas.reshape(n_blocks, bits_per_block)
     meas = meas.reshape(n_blocks, 3, B)
 
@@ -167,7 +178,7 @@ if __name__ == "__main__":
         palette="rainbow",
         theta=None,
         block=1,
-        seed=7,
+        seed=None,
         out_path="quantum_art_1024x1024.bmp"
     )
     out = quantum_paint(cfg)
